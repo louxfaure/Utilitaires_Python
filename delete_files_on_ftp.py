@@ -6,12 +6,16 @@ import pysftp
 from datetime import datetime
 
 
+cnopts = pysftp.CnOpts()
+cnopts.hostkeys = None 
+
 SERVICE = "Alma_Chargeur_De_Cours"
 LOGS_LEVEL = 'DEBUG'
 LOGS_DIR = os.getenv('LOGS_PATH')
 
 
-with pysftp.Connection(host=os.getenv("SFTP_UB_HOSTNAME"), username=os.getenv("SFTP_UB_LOGIN"), password=os.getenv("SFTP_UB_PW")) as sftp:
+
+with pysftp.Connection(host=os.getenv("SFTP_UB_HOSTNAME"), username=os.getenv("SFTP_UB_LOGIN"), password=os.getenv("SFTP_UB_PW"), cnopts=cnopts) as sftp:
     print("Connection succesfully stablished ... ")
     remoteFilePath = '/DEPOT/THESES'
     file_list = sftp.listdir(remoteFilePath)
