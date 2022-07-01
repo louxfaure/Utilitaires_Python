@@ -6,8 +6,7 @@ import pysftp
 from datetime import datetime
 
 
-cnopts = pysftp.CnOpts()
-cnopts.hostkeys = None 
+cnopts = pysftp.CnOpts(knownhosts=os.getenv('KNOWN_HOSTS'))
 
 SERVICE = "Alma_Chargeur_De_Cours"
 LOGS_LEVEL = 'DEBUG'
